@@ -1,18 +1,12 @@
-from selenium import webdriver
 import time
 import socket
 import threading
 import os
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, WebDriverException, TimeoutException
-from selenium.webdriver.common.action_chains import ActionChains
-import logging
 from selenium.webdriver import Chrome, ChromeOptions
-import platform
-from chromeDriverManager.chromedriver_manager import ChromeDriverManager
 import threading
 
 class Twitter:
@@ -135,16 +129,10 @@ class Twitter:
                 # Retrieve the port number assigned by the OS
                 available_port = s.getsockname()[1]
 
-                # Log the found available port
-                logging.info(f"Available port found: {available_port}")
-
                 # Return the found port
                 return available_port
 
         except socket.error as e:
-            # Log the error in case of a socket exception
-            logging.error(f"Failed to find an available port: {e}")
-
             # Raise a new exception for the calling code to handle
             raise Exception("Failed to find an available port") from e
     
